@@ -9,6 +9,7 @@ SOURCES=$(SRC_PATH)/main.c \
 	$(SRC_PATH)/ui.c \
 	$(SRC_PATH)/game.c \
 	$(SRC_PATH)/highscore.c \
+	$(SRC_PATH)/score.c \
 	$(SRC_PATH)/board.c
 
 OBJECTS=$(SOURCES:.c=.o)
