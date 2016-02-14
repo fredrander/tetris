@@ -71,7 +71,7 @@ void game_new_falling()
 	// create and show next Tetrimino
 	next_tetrimino = (Tetriminos) (rand() % 7);
 	ui_draw_next(next_tetrimino);
-	
+
 	falling.x = start_position_x[falling.tetrimino];
 	falling.y = 0;
 
@@ -85,7 +85,11 @@ void game_new_falling()
 	}
 
 	falling.soft_drop = false;
+
+	printf( "Start %c, next %c\n", tetris_tetrimino_name( falling.tetrimino ),
+	     tetris_tetrimino_name( next_tetrimino ) );
 }
+
 
 // draw falling tetrimino at it's current position
 void game_draw_falling()
@@ -109,6 +113,8 @@ void game_init()
 
 void game_start()
 {
+	printf( "New game\n" );
+
 	game_over = false;
 	quit = false;
 	pause = false;
@@ -344,8 +350,10 @@ void game_handle_event()
 							quit = true;
 							break;
 						case SDLK_PAUSE:
+						case SDLK_p:
 							pause = true;
 							score_stop_timer();
+							printf( "Pause\n" );
 							break;
 						default:
 							break;
@@ -360,11 +368,13 @@ void game_handle_event()
 							quit = true;
 							break;
 						case SDLK_PAUSE:
+						case SDLK_p:
 							if (pause)
 							{
 								pause = false;
 								falling.next_fall = SDL_GetTicks() + falling_speed;
 								score_start_timer();
+								printf( "Continue\n" );
 							}
 							break;
 						case SDLK_n:
@@ -464,6 +474,8 @@ bool game_update_board()
 	{
 		line_clear = true;
 
+		printf( "Cleared %d line(s)\n", cleared );
+
 		if (score_add_clear(cleared))
 		{
 			// set new speed if we increased level
@@ -472,6 +484,8 @@ bool game_update_board()
 		combo_count++;
 		if (combo_count > 1)
 		{
+			printf( "Combo %d\n", combo_count );
+
 			score_add_combo(combo_count-1);
 		}
 	}
@@ -510,6 +524,8 @@ bool game_update()
 				game_over = true;
 				score_stop_timer();
 				score_game_over();
+
+				printf( "Game over\n" );
 			}
 			else
 			{

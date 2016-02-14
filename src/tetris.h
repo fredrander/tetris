@@ -29,5 +29,8 @@ typedef enum RotationDefs
 #define BOARD_HEIGHT 20
 
 
+char tetris_tetrimino_name( Tetriminos t );
+
+
 #endif // __tetris_h___
 

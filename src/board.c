@@ -3,6 +3,8 @@
 #include "ui.h"
 #include <memory.h>
 #include <limits.h>
+#include <stdio.h>
+
 
 // holds current board status
 // each position can have a Tetrimino or be empty 

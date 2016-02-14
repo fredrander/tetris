@@ -6,6 +6,7 @@ LDFLAGS=
 SRC_PATH=../src
 
 SOURCES=$(SRC_PATH)/main.c \
+	$(SRC_PATH)/tetris.c \
 	$(SRC_PATH)/ui.c \
 	$(SRC_PATH)/game.c \
 	$(SRC_PATH)/highscore.c \
